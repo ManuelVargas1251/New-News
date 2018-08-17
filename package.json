@@ -1,0 +1,23 @@
+{
+  "name": "new-news",
+  "version": "1.0.0",
+  "description": "this uploades my vids to youtube and all processes involved",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManuelVargas1251/New-News.git"
+  },
+  "author": "Manuel Vargas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ManuelVargas1251/New-News/issues"
+  },
+  "homepage": "https://github.com/ManuelVargas1251/New-News#readme",
+  "dependencies": {
+    "ytdl-core": "^0.24.0"
+  }
+}

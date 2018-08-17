@@ -1,3 +1,8 @@
+# Video Format
+*.mp4
+*.flv
+*.mov
+
 # Logs
 logs
 *.log

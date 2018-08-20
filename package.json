@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ManuelVargas1251/New-News#readme",
   "dependencies": {
+    "request": "^2.88.0",
     "ytdl-core": "^0.24.0"
   }
 }

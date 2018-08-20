@@ -1,6 +1,12 @@
-const fs = require('fs');
-const ytdl = require('ytdl-core');
+const searching = require('./app/searching')
+const download = require('./app/download')
+const render = require('./app/render')
+const upload = require('./app/upload')
 
-console.log('start')
-ytdl('https://www.youtube.com/watch?v=JPA5l7VoGPI')
-    .pipe(fs.createWriteStream('sam.mp4'));
+
+
+
+
+
+console.log("Program starting...")
+searching.searching

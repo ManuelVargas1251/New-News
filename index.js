@@ -5,8 +5,5 @@ const upload = require('./app/upload')
 
 
 
-
-
-
-console.log("Program starting...")
+console.log("----Program starting----")
 searching.searching

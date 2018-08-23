@@ -1,7 +1,8 @@
 # google api
 config.js
 
-# Video Format
+# Videos
+downloads
 *.mp4
 *.flv
 *.mov

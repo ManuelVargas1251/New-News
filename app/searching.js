@@ -2,49 +2,8 @@
 
 const
     // Imports
-    request = require('request'),
     ytdl = require('ytdl-core'),
-    config = require('../config'),
-    fs = require('fs'),
-
-    // API Parameters
-    apiKey = config.apiKey,
-    channelId = config.channelId,
-    youtubeApiUrl = "https://www.googleapis.com/youtube/v3/activities",
-    options = "maxResults=5&part=snippet,contentDetails",
-    YOUTUBEAPISTRING = youtubeApiUrl + '?' + 'key=' + apiKey + '&' + 'channelId=' + channelId + '&' + options
-
-
-
-// String Truncate function; source: https://stackoverflow.com/a/1199420/7298219
-String.prototype.trunc = String.prototype.trunc ||
-    function (n) {
-        return (this.length > n) ? this.substr(0, n - 1) + '...' : this;
-    };
-
-// Request the most recent video from the white house
-function searching() {
-
-    //GET Request
-    request(
-
-        // API URL
-        YOUTUBEAPISTRING,
-
-        // Response Format
-        { json: true },
-
-        // Response Callback
-        (err, res, body, ) => {
-
-            if (err) { return console.log(err); }   // prints any errors and returns
-
-            responseHandler(body)   // handle the response body in a function below
-        }
-    )
-}
-
-searching()
+    fs = require('fs')
 
 function responseHandler(body) {
 
@@ -64,7 +23,7 @@ function responseHandler(body) {
                 videoDate = videoData.snippet.publishedAt,
                 fileName = (videoTitle.split('/').join('-')).split(':').join(' ')   //remove : and / from string
 
-
+            // download the video 😎
             ytdl('https://www.youtube.com/watch?v=' + videoURL)     // Source Url
                 .pipe(fs.createWriteStream('./downloads/' + fileName + '.mp4'));  // Destination Location
 
@@ -78,7 +37,7 @@ function responseHandler(body) {
             // log to console
             // console.log(
             //     "TimeStamp: " + currentDate + '\n' +
-            //     "Video Title: " + videoTitle.trunc(45) + '\n' +
+            //     "Video Title: " + videoTitle + '\n' +
             //     "Video URL: " + videoURL
             // )
         }
@@ -114,3 +73,5 @@ function responseHandler(body) {
             console.error('----urls logged----');
         })
 }
+
+module.exports = responseHandler

@@ -1,4 +1,4 @@
-// main app start file
+// reponseHandler
 
 const
     // Imports
@@ -23,7 +23,7 @@ function responseHandler(body) {
                 videoDate = videoData.snippet.publishedAt,
                 fileName = (videoTitle.split('/').join('-')).split(':').join(' ')   //remove : and / from string
 
-            // download the video 😎
+            // download the video 😎🌊
             ytdl('https://www.youtube.com/watch?v=' + videoURL)     // Source Url
                 .pipe(fs.createWriteStream('./downloads/' + fileName + '.mp4'));  // Destination Location
 
@@ -52,7 +52,7 @@ function responseHandler(body) {
 
     // log date of run
     fs.appendFile('log.log', currentDate + '\n', (err) => {
-        if (err) throw err;
+        if (err) { return console.log(err); }
         console.error('----date logged----');
     })
 
@@ -69,7 +69,7 @@ function responseHandler(body) {
 
         // error handle
         (err) => {
-            if (err) throw err;
+            if (err) { return console.log(err); }
             console.error('----urls logged----');
         })
 }

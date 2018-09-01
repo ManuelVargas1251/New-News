@@ -1,17 +1,21 @@
 const
-// Files
+    // Files
     searching = require('./app/searching'),
     request = require('request'),
-    config = require('./config')
+    config = require('./config'),
 
-// API Parameters
+    // API Parameters
     apiKey = config.apiKey,
     channelId = config.channelId,
     youtubeApiUrl = "https://www.googleapis.com/youtube/v3/activities",
     options = "maxResults=5&part=snippet,contentDetails",
     YOUTUBEAPISTRING = youtubeApiUrl + '?' + 'key=' + apiKey + '&' + 'channelId=' + channelId + '&' + options
 
+
 console.log("----Program starting----")
+
+
+
 
 // Request the most recent video from the white house
 //GET Request

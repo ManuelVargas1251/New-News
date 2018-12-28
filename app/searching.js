@@ -57,21 +57,24 @@ function responseHandler(body) {
     })
 
     // log video urls
-    fs.appendFile(
-        'videos.urls',  //filename
-        'something',
-        //data to save
-        // videos[0].videoURL + '\n' +
-        // videos[1].videoURL + '\n' +
-        // videos[2].videoURL + '\n' +
-        // videos[3].videoURL + '\n' +
-        // videos[4].videoURL + '\n',
+    if (videos) {
+        for(let vid in videos){
+            fs.appendFile(
+                //filename
+                'videos.urls', 
+                 
+                //data to save
+                videos[vid].videoURL + '\n',
 
-        // error handle
-        (err) => {
-            if (err) { return console.log(err); }
-            console.error('----urls logged----');
-        })
+                // error handle
+                (err) => {
+                    if (err) { return console.log(err); }
+                    console.error('----urls logged----');
+                })
+        }
+
+    }
+
 }
 
 module.exports = responseHandler

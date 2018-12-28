@@ -47,32 +47,41 @@ function responseHandler(body) {
         )
     });
 
-    console.log("---- videos ----")
-    console.log(videos)
+    
 
     // log date of run
-    fs.appendFile('log.log', currentDate + '\n', (err) => {
-        if (err) { return console.log(err); }
-        console.error('----date logged----');
-    })
+    fs.appendFile(
+        'log.log',  //filename 
+        currentDate + '\n',
+        (err) => {
+            if (err) { return console.log(err); }
+            console.error('--date logged--');
+        }
+    )
+    
 
     // log video urls
-    if (videos) {
-        for(let vid in videos){
+    if (videos === []) {
+
+        console.log('videos:\n' + + videos)
+
+        for (let vid in videos) {
             fs.appendFile(
                 //filename
-                'videos.urls', 
-                 
+                'videos.urls',
+
                 //data to save
                 videos[vid].videoURL + '\n',
 
                 // error handle
                 (err) => {
                     if (err) { return console.log(err); }
-                    console.error('----urls logged----');
+                    console.error('--urls logged--');
                 })
         }
 
+    }else{
+        console.log('no videos found')
     }
 
 }

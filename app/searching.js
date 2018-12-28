@@ -12,12 +12,15 @@ function responseHandler(body) {
 
     // for each video in response, save to array
     body.items.forEach(function (videoData) {
+        
 
         // search the title for Press Briefing
         // if found, download video
         // else, log title and date
         if (videoData.snippet.title.includes('Press Briefing')) {
 
+            console.warn('✔')
+            
             let videoTitle = videoData.snippet.title,
                 videoURL = videoData.contentDetails.upload.videoId,
                 videoDate = videoData.snippet.publishedAt,
@@ -42,7 +45,7 @@ function responseHandler(body) {
             // )
         }
         else (
-            console.warn('Most recent video does not contain Press Briefing')
+            console.warn('X')
             // send me a text and wait for a response from me??
         )
     });

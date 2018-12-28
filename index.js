@@ -14,11 +14,8 @@ const
 
 console.log("----Program starting----")
 
-
-
-
-// Request the most recent video from the white house
 //GET Request
+// Request the most recent video from the white house
 request(
 
     // API URL

@@ -4,15 +4,23 @@ const
     request = require('request'),
     config = require('./config'),
 
+
     // API Parameters
     apiKey = config.apiKey,
     channelId = config.channelId,
+    numberOfVideos = 10,
     youtubeApiUrl = "https://www.googleapis.com/youtube/v3/activities",
-    options = "maxResults=5&part=snippet,contentDetails",
-    YOUTUBEAPISTRING = youtubeApiUrl + '?' + 'key=' + apiKey + '&' + 'channelId=' + channelId + '&' + options
+    options =
+        'key=' + apiKey + '&' +
+        'channelId=' + channelId + '&' +
+        'maxResults=' + numberOfVideos + '&part=snippet,contentDetails',
+
+    YOUTUBEAPISTRING = youtubeApiUrl + '?' + options
+
+    console.log("----Program starting----")
 
 
-console.log("----Program starting----")
+
 
 //GET Request
 // Request the most recent video from the white house

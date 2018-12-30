@@ -2,17 +2,38 @@
 
 const
     // Imports
-    ytdl = require('ytdl-core'),
-    fs = require('fs')
+    ytdl = require('ytdl-core'),    //youtube vid downloader
+    fs = require('fs'),
+    moment = require('moment')
+
+/*
+{ kind: 'youtube#activityListResponse',
+    etag: '"XI7nbFXulYBIpL0ayR_gDh3eu1k/HKsahEMjt7sgnjfUJcAITqLYrug"',
+    nextPageToken: 'CAUQAA',
+    pageInfo: { totalResults: 14, resultsPerPage: 5 },
+    items:
+     [ { kind: 'youtube#activity',
+         etag: '"XI7nbFXulYBIpL0ayR_gDh3eu1k/sDzq1U6B-JWeAd60SuX6VodvpsY"',
+         id: 'VTE1MzQ5NzExMDE5NDEwNjIxMDc3NjcyMA==',
+         snippet: [Object],
+         contentDetails: [Object] },
+       { kind: 'youtube#activity',
+         etag: '"XI7nbFXulYBIpL0ayR_gDh3eu1k/5BTVRM7lERWIuW0nyvejp6vdSQg"',
+         id: 'VTE1MzQ5NjYzOTM5NDEwNjIxMDc3NjY1Ng==',
+         snippet: [Object],
+         contentDetails: [Object] },
+*/
 
 function responseHandler(body) {
 
-    let videos = [],
-        currentDate = new Date().toISOString()  // time of check
+    let videos = []
+
+    console.log(body.items.length + ' videos in response')
 
     // for each video in response, save to array
     body.items.forEach(function (videoData) {
-        
+
+        //console.log(videoData.snippet.title)
 
         // search the title for Press Briefing
         // if found, download video
@@ -20,7 +41,7 @@ function responseHandler(body) {
         if (videoData.snippet.title.includes('Press Briefing')) {
 
             console.warn('✔')
-            
+
             let videoTitle = videoData.snippet.title,
                 videoURL = videoData.contentDetails.upload.videoId,
                 videoDate = videoData.snippet.publishedAt,
@@ -50,18 +71,22 @@ function responseHandler(body) {
         )
     });
 
-    
 
+    // log.log
     // log date of run
     fs.appendFile(
-        'log.log',  //filename 
-        currentDate + '\n',
+        'log.log',          // filename 
+
+        // file content
+        moment().format('MMMM Do YYYY, h:mm:ss a') + '\n',
+
+        // error handler
         (err) => {
             if (err) { return console.log(err); }
             console.error('--date logged--');
         }
     )
-    
+
 
     // log video urls
     if (videos === []) {
@@ -83,7 +108,7 @@ function responseHandler(body) {
                 })
         }
 
-    }else{
+    } else {
         console.log('no videos found')
     }
 
